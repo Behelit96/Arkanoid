@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Title/but_start.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Title/main_title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Title/but_quit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enviroment/background.png" type="Texture" id=4]
+[ext_resource path="res://Title/titulo.gd" type="Script" id=5]
+
+[node name="titulo" type="Node"]
+script = ExtResource( 5 )
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 150.0
+margin_right = -40.0
+margin_bottom = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu" type="VBoxContainer" parent="title_margin"]
+margin_right = 224.0
+margin_bottom = 262.0
+
+[node name="main_title" parent="title_margin/menu" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_right = 224.0
+
+[node name="but_parent" parent="title_margin/menu" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 68.0
+margin_right = 224.0
+margin_bottom = 132.0
+
+[node name="but" parent="title_margin/menu/but_parent" index="0"]
+margin_left = 80.0
+margin_right = 144.0
+
+[node name="but_parent2" parent="title_margin/menu" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 136.0
+margin_right = 224.0
+margin_bottom = 200.0
+
+[node name="but" parent="title_margin/menu/but_parent2" index="0"]
+margin_left = 80.0
+margin_right = 144.0
+
+[connection signal="pressed" from="title_margin/menu/but_parent/but" to="." method="_on_start_but_pressed"]
+[connection signal="pressed" from="title_margin/menu/but_parent2/but" to="." method="_on_quit_but_pressed"]
+
+[editable path="title_margin/menu/but_parent"]
+[editable path="title_margin/menu/but_parent2"]
